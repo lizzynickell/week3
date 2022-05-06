@@ -59,4 +59,24 @@ caro%>%
   coord_fixed() +
   theme(legend.position = "right")
 ```
+Task 4
+```{r}
+rle_id <- function(vec){
+x <- rle(vec)$lengths 
+as.factor(rep(seq_along(x), times=x)) 
+}
 
+caro <- caro %>% 
+  mutate(segment_id = rle_id(static))
+
+caro %>%
+ ggplot(aes(E, N, color = segment_id))  +
+   geom_path() +
+   geom_point() +
+   coord_fixed() +
+   theme(legend.position = "right")  
+   
+caro %>%
+  group_by(segment_id)
+```
+Task 5
