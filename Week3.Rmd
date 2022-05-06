@@ -77,6 +77,29 @@ caro %>%
    theme(legend.position = "right")  
    
 caro %>%
-  group_by(segment_id)
+  group_by(segment_id) %>% 
+  filter(n() == 5)
+  
+  
+caro %>%
+ ggplot(aes(E, N, color = segment_id))  +
+   geom_path() +
+   geom_point() +
+   coord_fixed() +
+   theme(legend.position = "right")    
 ```
+
 Task 5
+```{r}
+pedestrian <- read_csv("pedestrian.txt")
+
+pedestrian %>%
+  ggplot(aes(x=E, y=N, color=as.factor(TrajID) )) + 
+  geom_path()+
+  geom_point() +  
+  facet_wrap(~TrajID) +
+  theme(legend.position="none")
+  
+#6 trajectories, different speeds, and some outliers.  
+```
+
