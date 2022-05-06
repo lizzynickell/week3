@@ -17,7 +17,7 @@ library(terra)
 ```
 
 ```
-
+Task 1
 ```{r}
 caro60 <- read.csv("~/Dropbox/INN/ZHAW/PTED/Week 3/Week3/caro60.txt")
 View(caro60)
@@ -32,5 +32,22 @@ caro <- caro60 %>%
     nPlus3  = sqrt((E-lead(E,3))^2+(N-lead(N,3))^2)  # distance to pos +3 minutes
   )
   
+```
+Task 2
+```{r}
+#Add mean column
+caro <- caro %>%
+  rowwise() %>%
+  mutate(
+    stepMean = mean(c(nMinus3, nMinus2, nMinus1,nPlus1,nPlus2, nPlus3))
+  ) %>%
+  ungroup() 
+  
+summary(caro)
+#Mean of stepMean is 6.9
+
+caro <- caro %>% 
+  ungroup() %>%
+  mutate(static = stepMean < mean(stepMean, na.rm = TRUE))
 ```
 
