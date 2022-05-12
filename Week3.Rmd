@@ -103,3 +103,10 @@ pedestrian %>%
 #6 trajectories, different speeds, and some outliers.  
 ```
 
+Task 6
+```{r}
+library(SimilarityMeasures)
+
+
+```
+
